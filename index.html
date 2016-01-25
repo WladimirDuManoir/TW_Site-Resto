@@ -29,7 +29,7 @@
 
 	<div class="row main">
 		<div class="col-md-9">
-		<form>
+		<form >
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
 		    <label for="nom" >Nom</label>
 		    <input type="text" class="form-control" id="nom" placeholder="Nom">
@@ -46,9 +46,29 @@
 		    <label for="numeroTel">Numéro de téléphone</label>
 		    <input type='tel' pattern='\d{10}' title='Numéro de téléphone Format: XXXXXXXXXX ' class="form-control" id="numeroTel" placeholder="Numéro de téléphone">
 		  </div>
+		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
+		    <label for="description">Déscription</label>
+		    <input type='text' class="form-control" id="description" placeholder="Déscription">
+		  </div>
+		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
+		    <label for="localisation">Localisation</label>
+		    <input type='text' class="form-control" id="localisation" placeholder="Localisation">
+		  </div>
+		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s">
+			<label for="severite">Sévérité</label><br>
+			<label>
+			<input type="radio" name="group1" value="Pas urgent"> Pas urgent<br>
+			<input type="radio" name="group1" value="Urgent" checked> Urgent<br>
+			<input type="radio" name="group1" value="Très urgent"> Très urgent</label><br>
+			<label for="suivi">Suivi</label><br>
+			<label>
+			<input type="radio" name="group2" value="Web"> Web<br>
+			<input type="radio" name="group2" value="Mail"> Mail<br>
+			<input type="radio" name="group2" value="Telephone" checked> Téléphone</label><br>
+			</div>
 		  <div class="form-group">
-		    <label for="exampleInputFile">File input</label>
-		    <input type="file" id="exampleInputFile">
+		    <label for="exampleInputFile">Photos</label>
+		    <input type="file" id="envoiePhoto">
 		    <p class="help-block">Example block-level help text here.</p>
 		  </div>
 		  <div class="checkbox">
