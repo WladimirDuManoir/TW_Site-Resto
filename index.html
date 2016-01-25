@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Restorants</title>
+    <title>Incidents</title>
     <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
@@ -19,72 +19,71 @@
   </head>
 
   <body>
-	<nav>
-		<a href="/html/">HTML</a> |
-	 	<a href="/css/">CSS</a> |
-		<a href="/js/">JavaScript</a> |
-		<a href="/jquery/">jQuery</a>
-	</nav>
-	<header>je suis le header</header>
+  	<h1> Formulaire de report d'incidents.</h1>
+  	<h4> Les champs indiqués par une * sont obligatoires.</h4>
+	<header>Remplir l'ensemble des champs pour signaler un incident.</header>
 
 	<div class="row main">
 		<div class="col-md-9">
-		<form >
+		<form method="post" action="mailto:pierrerondin@laposte.net?cc=wladduma@gmail.com" enctype="text/plain">
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
-		    <label for="nom" >Nom</label>
-		    <input type="text" class="form-control" id="nom" placeholder="Nom">
+		    <label for="nom" >Nom*</label>
+		    <input aria-describedby="descriptionNom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom" required aria-required="true" >
+		    <div hidden id="descriptionNom">Donnez le nom pour vous identifier.</div>
 		  </div>
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
-		    <label for="prenom">Prénom</label>
-		    <input type="text" class="form-control" id="prenom" placeholder="Prénom">
+		    <label for="prenom">Prénom*</label>
+		    <input aria-describedby="descriptionPrenom" name="prenom" type="text" class="form-control" id="prenom" placeholder="Prénom" required aria-required="true">
+		    <div hidden id="descriptionPrenom">Donnez le prenom pour vous identifier.</div>
 		  </div>
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s">
-		    <label for="adresseMail">Addresse Email</label>
-		    <input type="email" class="form-control" id="adresseMail" placeholder="Email">
+		    <label for="adresseMail">Addresse Email*</label>
+		    <div hidden id="descriptionPrenom">Donnez un email ou l'on pourra vous contacter.</div>
+		    <input aria-describedby="descriptionEmail" name="email" type="email" class="form-control" id="adresseMail" placeholder="Email" required aria-required="true">
 		  </div>
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
-		    <label for="numeroTel">Numéro de téléphone</label>
-		    <input type='tel' pattern='\d{10}' title='Numéro de téléphone Format: XXXXXXXXXX ' class="form-control" id="numeroTel" placeholder="Numéro de téléphone">
+		    <label for="numeroTel">Numéro de téléphone*</label>
+		    <input aria-describedby="descriptionTelephone" name="tel" type='tel' pattern='\d{10}' title='Numéro de téléphone Format: XXXXXXXXXX ' class="form-control" id="numeroTel" placeholder="Numéro de téléphone" required aria-required="true">
 		  </div>
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
-		    <label for="description">Déscription</label>
-		    <input type='text' class="form-control" id="description" placeholder="Déscription">
+		    <label for="description">Déscription*</label>
+		    <input aria-describedby="descriptionDescription" name="description" type='text' class="form-control" id="description" placeholder="Déscription" required aria-required="true">
 		  </div>
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
-		    <label for="localisation">Localisation</label>
-		    <input type='text' class="form-control" id="localisation" placeholder="Localisation">
+		    <label for="localisation">Localisation*</label>
+		    <input aria-describedby="descriptionLocalisation" name="loca" type='text' class="form-control" id="localisation" placeholder="Localisation" required aria-required="true">
 		  </div>
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s">
 			<label for="severite">Sévérité</label><br>
 			<label>
-			<input type="radio" name="group1" value="Pas urgent"> Pas urgent<br>
-			<input type="radio" name="group1" value="Urgent" checked> Urgent<br>
-			<input type="radio" name="group1" value="Très urgent"> Très urgent</label><br>
+			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Pas urgent"> Pas urgent<br>
+			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Urgent" checked> Urgent<br>
+			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Très urgent"> Très urgent</label><br>
 			<label for="suivi">Suivi</label><br>
 			<label>
-			<input type="radio" name="group2" value="Web"> Web<br>
-			<input type="radio" name="group2" value="Mail"> Mail<br>
-			<input type="radio" name="group2" value="Telephone" checked> Téléphone</label><br>
+			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Web"> Web<br>
+			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Mail"> Mail<br>
+			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Telephone" checked> Téléphone</label><br>
 			</div>
 		  <div class="form-group">
-		    <label for="exampleInputFile">Photos</label>
-		    <input type="file" id="envoiePhoto">
-		    <p class="help-block">Example block-level help text here.</p>
+		    <label for="exampleFile">Photos</label>
+		    <input aria-describedby="descriptionPhoto" name="photo" type="file" id="envoiePhoto">
 		  </div>
-		  <div class="checkbox">
-		    <label>
-		      <input type="checkbox"> Check me out
-		    </label>
-		  </div>
-		  <button type="submit" class="btn btn-default wow flip">Submit</button>
+		<button type="submit" class="btn btn-default wow flip">Submit</button>
 		</form>
 		</div>
 	</div>
+	<div class="row">
+		<footer class="col-md-12"> 
+		Toutes informations recuilli ne seront que utilisées en interne. <br> Tous les informations enregistré sont soumit a une déclaration auprès de la CNIL. <br> Pour toutes consultations, modifications, suppresions de vos données contacter <a href="mailto:pierrerondin@laposte.net"></a>
+		</footer>
+	</div>
 
-	<footer> je suis le footer</footer>
   </body>
    <script src="js/wow.min.js"></script>
               <script>
               new WOW().init();
               </script>
 </html>
+
+<!-- TODO DoNotTrack -->
