@@ -19,65 +19,117 @@
   </head>
 
   <body>
+  	<div class="form-header row wow fadeInDown" data-wow-delay="0.1s">
   	<h1> Formulaire de report d'incidents.</h1>
   	<h4> Les champs indiqués par une * sont obligatoires.</h4>
 	<header>Remplir l'ensemble des champs pour signaler un incident.</header>
+  	</div>
 
-	<div class="row main">
-		<div class="col-md-9">
+<div class="main">
 		<form method="post" action="mailto:pierrerondin@laposte.net?cc=wladduma@gmail.com" enctype="text/plain">
+	<div class="row">
+		<div class="col-md-12">
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
 		    <label for="nom" >Nom*</label>
 		    <input aria-describedby="descriptionNom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom" required aria-required="true" >
 		    <div hidden id="descriptionNom">Donnez le nom pour vous identifier.</div>
 		  </div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="prenom">Prénom*</label>
 		    <input aria-describedby="descriptionPrenom" name="prenom" type="text" class="form-control" id="prenom" placeholder="Prénom" required aria-required="true">
-		    <div hidden id="descriptionPrenom">Donnez le prenom pour vous identifier.</div>
+		    <div hidden id="descriptionPrenom">Donnez le prénom pour vous identifier.</div>
 		  </div>
+		</div>
+	</div>
+		  
+	<div class="row">
+		<div class="col-md-12">
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s">
 		    <label for="adresseMail">Addresse Email*</label>
-		    <div hidden id="descriptionPrenom">Donnez un email ou l'on pourra vous contacter.</div>
+		    <div hidden id="descriptionEmail">Donnez un email ou l'on pourra vous contacter.</div>
 		    <input aria-describedby="descriptionEmail" name="email" type="email" class="form-control" id="adresseMail" placeholder="Email" required aria-required="true">
 		  </div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="numeroTel">Numéro de téléphone*</label>
 		    <input aria-describedby="descriptionTelephone" name="tel" type='tel' pattern='\d{10}' title='Numéro de téléphone Format: XXXXXXXXXX ' class="form-control" id="numeroTel" placeholder="Numéro de téléphone" required aria-required="true">
+		    <div hidden id="descriptionTelephone">Donnez le téléphone avec lequelle on peut vous contacter.</div>
 		  </div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="description">Déscription*</label>
 		    <input aria-describedby="descriptionDescription" name="description" type='text' class="form-control" id="description" placeholder="Déscription" required aria-required="true">
 		  </div>
-		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
+		    <div hidden id="descriptionDescription">Donnez la description complète de l'incident.</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
 		    <label for="localisation">Localisation*</label>
 		    <input aria-describedby="descriptionLocalisation" name="loca" type='text' class="form-control" id="localisation" placeholder="Localisation" required aria-required="true">
+		    <div hidden id="descriptionLocalisation">Donnez la localisation de l'incident.</div>
 		  </div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-3">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s">
 			<label for="severite">Sévérité</label><br>
 			<label>
-			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Pas urgent"> Pas urgent<br>
+			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Peu urgent"> Peu urgent<br>
 			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Urgent" checked> Urgent<br>
 			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Très urgent"> Très urgent</label><br>
+		    <div hidden id="descriptionUrgence">Donnez la severité de l'incident, peu urgent, urgent ou trés urgent.</div>
+		  </div>
+		</div>
+		  
+		<div class="col-sm-3">
+		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s">
 			<label for="suivi">Suivi</label><br>
 			<label>
 			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Web"> Web<br>
 			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Mail"> Mail<br>
 			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Telephone" checked> Téléphone</label><br>
+		    <div hidden id="descriptionSuivi">Donnez la méthode que vous préférer pour la suivi de l'incident.</div>
 			</div>
-		  <div class="form-group">
-		    <label for="exampleFile">Photos</label>
-		    <input aria-describedby="descriptionPhoto" name="photo" type="file" id="envoiePhoto">
-		  </div>
-		<button type="submit" class="btn btn-default wow flip">Submit</button>
-		</form>
 		</div>
 	</div>
+
 	<div class="row">
-		<footer class="col-md-12"> 
-		Toutes informations recuilli ne seront que utilisées en interne. <br> Tous les informations enregistré sont soumit a une déclaration auprès de la CNIL. <br> Pour toutes consultations, modifications, suppresions de vos données contacter <a href="mailto:pierrerondin@laposte.net"></a>
-		</footer>
+		  <div class="photo form-group wow fadeInLeft">
+		    <label for="exampleFile">Photos</label>
+		    <input aria-describedby="descriptionPhoto" name="photo" type="file" id="envoiePhoto">
+		    <div hidden id="descriptionPhoto">Donnez une photo de l'incident.</div>
+		  </div>
 	</div>
+	<div class="row submit-btn">
+		<button type="submit" class="btn btn-default wow flip">Submit</button>
+	</div>
+</form>
+	</div>
+
+	</div>
+	<footer class="row wow fadeInUp" data-wow-delay="0.1s"> 
+		<div class="col-md-12">
+	Toutes informations recuilli ne seront que utilisées en interne. <br> Tous les informations enregistré sont soumit a une déclaration auprès de la CNIL. <br> Pour toutes consultations, modifications, suppresions de vos données contacter <a href="mailto:pierrerondin@laposte.net"> Pierre Rondin</a>
+		</div>
+	</footer>
 
   </body>
    <script src="js/wow.min.js"></script>
