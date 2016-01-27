@@ -32,7 +32,7 @@
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
 		    <label for="nom" >Nom*</label>
-		    <input aria-describedby="descriptionNom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom"  aria-required="true" >
+		    <input aria-describedby="descriptionNom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom"  aria-required="true" required onblur="checkFormElement()" >
 		    <div hidden id="descriptionNom">Donnez le nom pour vous identifier.</div>
 		  </div>
 		</div>
@@ -42,7 +42,7 @@
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="prenom">Prénom*</label>
-		    <input aria-describedby="descriptionPrenom" name="prenom" type="text" class="form-control" id="prenom" placeholder="Prénom"  aria-required="true">
+		    <input aria-describedby="descriptionPrenom" name="prenom" type="text" class="form-control" id="prenom" placeholder="Prénom"  aria-required="true" required>
 		    <div hidden id="descriptionPrenom">Donnez le prénom pour vous identifier.</div>
 		  </div>
 		</div>
@@ -53,7 +53,7 @@
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s">
 		    <label for="adresseMail">Addresse Email*</label>
 		    <div hidden id="descriptionEmail">Donnez un email ou l'on pourra vous contacter.</div>
-		    <input aria-describedby="descriptionEmail" name="email" type="email" class="form-control" id="adresseMail" placeholder="Email" aria-required="true">
+		    <input aria-describedby="descriptionEmail" name="email" type="email" class="form-control" id="adresseMail" placeholder="Email" aria-required="true" required>
 		  </div>
 		</div>
 	</div>
@@ -64,7 +64,7 @@
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="date">Date*</label>
-		    <input aria-describedby="descriptionDate" name="date" type='date' class="form-control" id="date" placeholder="Date" aria-required="true">
+		    <input aria-describedby="descriptionDate" name="date" type='date' class="form-control" id="date" placeholder="Date" aria-required="true" required>
 		    <div hidden id="descriptionDate">Donnez la date à laquelle l'incident c'est produit.</div>
 		  </div>
 		</div>
@@ -72,9 +72,21 @@
 
 	<div class="row">
 		<div class="col-md-12">
+		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
+		     <label for="numeroTel">Numéro de téléphone*</label>
+		    <input aria-describedby="descriptionTelephone" name="tel" type='tel' pattern='\d{10}' title='Numéro de téléphone Format: 0666666666 ' 
+class="form-control" id="numeroTel" placeholder="0666666666" required aria-required="true">
+		    <div hidden id="descriptionTelephone">Donnez le téléphone avec lequelle on peut vous contacter.</div>
+
+ 		  </div>
+ 		</div>
+ 	</div>
+
+	<div class="row">
+		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="dept">Departement*</label>
-		    <input aria-describedby="descriptionDepartement" name="dept"  class="form-control" id="dept" readonly="readonly" placeholder="Departement" aria-required="true">
+		    <input aria-describedby="descriptionDepartement" name="dept"  class="form-control" id="dept" readonly="readonly" placeholder="Departement" aria-required="true" required>
 		    <select name="listDept" size="1" onChange="setDepartement()">
 				<OPTION>1
 				<OPTION>2
@@ -91,7 +103,7 @@
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="description">Description*</label>
-		    <input aria-describedby="descriptionDescription" name="description" type='text' class="form-control" id="description" placeholder="Déscription" aria-required="true">
+		    <input aria-describedby="descriptionDescription" name="description" type='text' class="form-control" id="description" placeholder="Déscription" aria-required="true" required>
 		  </div>
 		    <div hidden id="descriptionDescription">Donnez la description complète de l'incident.</div>
 		</div>
@@ -101,7 +113,7 @@
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
 		    <label for="localisation">Localisation*</label>
-		    <input aria-describedby="descriptionLocalisation" name="loca" type='text' class="form-control" id="localisation" placeholder="Localisation" aria-required="true">
+		    <input aria-describedby="descriptionLocalisation" name="loca" type='text' class="form-control" id="localisation" placeholder="Localisation" aria-required="true" required>
 		    <div hidden id="descriptionLocalisation">Donnez la localisation de l'incident.</div>
 		  </div>
 		</div>
@@ -139,7 +151,7 @@
 		  </div>
 	</div>
 	<div class="row submit-btn">
-		<button type="submit" class="btn btn-primary btn-lg wow pulse col-sm-11 col-md-3" data-wow-iteration="infinite">Submit</button>
+		<button type="submit" class="btn btn-primary btn-lg wow  col-sm-11 col-md-3" data-wow-iteration="infinite">Submit</button> <!-- pulse -->
 	</div>
 </form>
 	</div>
