@@ -26,16 +26,16 @@ function checkFormElement() {
 	// Check element 
 	if (elem.value == "") {
 		// if wrong add note + wrong-entry class
-		if (!hasClass(elem," wrong-entry ")) {
+		if (!hasClass(elem,"wrong-entry")) {
+			alert("good");
 			elem.className += " wrong-entry ";
 			//elem.classList.add(" wrong-entry ");
 		}
 	}else {
-		/*if (!hasClass(elem," wrong-entry ")) { TODO XXX
-			elem.className += " wrong-entry ";
-			//elem.classList.add(" wrong-entry ");
+		if (!hasClass(elem," wrong-entry ")) { 
+			//elem.className -= " wrong-entry ";
+			elem.className = elem.className.replace(/\bwrong-entry\b/,'');
 		}
-		elem.className.replace(/\bwrong-entry\b/,'');*/
 	}
 }
 

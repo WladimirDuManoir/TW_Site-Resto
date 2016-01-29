@@ -1,3 +1,22 @@
+<?php
+
+// TODO :
+//		 - data base 
+//       - put all html in other doc  
+//       - submit page -> reloed page   
+//		    - fide best way to debug js
+//       - write and check checker for js form   
+//       - write all (obligue) js interaction   
+//       - do ID generation for images + check file   
+
+/*include_once('model/connectDb.php');
+include_once('model/getColumn.php');
+include_one('model/insertUser.php');
+include_once('model/insertUser.php');
+insertUser('jean','godin','jg@hry.com','0672434345');*/
+
+include_once('model/create_ddb.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
