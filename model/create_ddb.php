@@ -21,7 +21,7 @@ try {
 		die('Erreur : ' . $e->getMessage());
 	}
 // Select database
-mysql_select_db($mysql_database) or die('Error selecting MySQL database: ' . mysql_error());
+ mysql_select_db($mysql_database) or die('Error selecting MySQL database: ' . mysql_error()); // XXX TODO
 
 // Temporary variable, used to store current query
 $templine = '';

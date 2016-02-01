@@ -1,6 +1,12 @@
 <?php
 
+//       - do table editor 
+   
 // TODO :
+//       - do a recap of all form info   
+// 		 - images
+// 		 - Attention graded on the photo id problem 
+
 //		 - data base 
 //       - put all html in other doc  
 //       - submit page -> reloed page   
@@ -9,13 +15,12 @@
 //       - write all (obligue) js interaction   
 //       - do ID generation for images + check file   
 
-/*include_once('model/connectDb.php');
+include_once('model/connectDb.php');
 include_once('model/getColumn.php');
-include_one('model/insertUser.php');
 include_once('model/insertUser.php');
-insertUser('jean','godin','jg@hry.com','0672434345');*/
+insertUser('jean','godin','jg@hry.com','0672434345');
 
-include_once('model/create_ddb.php');
+// include_once('model/create_ddb.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,6 +43,9 @@ include_once('model/create_ddb.php');
   </head>
 
   <body onLoad="setDate()">
+<?php include_once('nav.php'); 
+    myNav("form");
+  ?>
   	<script src="js/form.js"></script>
   	<div class="form-header row wow fadeInDown" data-wow-delay="0.1s">
   	<h1> Formulaire de report d'incidents.</h1>
@@ -176,11 +184,8 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 	</div>
 
 	</div>
-	<footer class="row wow fadeInUp" data-wow-delay="0.1s"> 
-		<div class="col-md-12">
-	Toutes les informations recuillies ne seront utilisées qu'en interne. <br> Toutes les informations enregistrées sont soumises à une déclaration auprès de la CNIL. <br> Pour toutes consultations, modifications, suppresions de vos données contacter <a href="mailto:pierrerondin@laposte.net"> Pierre Rondin</a>
-		</div>
-	</footer>
+	
+	<?php include_once('footer.php'); ?>
 
   </body>
    <script src="js/wow.min.js"></script>

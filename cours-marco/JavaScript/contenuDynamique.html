@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3c.org/1999/xhtml">
+<head><title>Dynamic values</title>
+   <script type="text/javascript">
+   <!--
+      var helpers=["Your name must be in the form: first name, last name",
+                   "Your email adress must have the form: user@domain",
+		   "Your user ID must have at least six characters", 
+		   "Your password must have at least six characters and it must include one digit", 
+		   "This box provides advice on filling out the form on this page. Put the mouse ove any input field to get advice"];
+		   
+      function messages(adviceNumber) {
+         document.getElementById("adviceBox").value= helpers[adviceNumber];
+      }
+   // -->
+   </script>
+</head>
+<body>
+<form action="">
+   <p style="font-weight:bold">
+   <span style ="font-weight:italic"> Costumer information</span><br/><br/>
+   Name: <input type="text" onmouseover="messages('0')" onmouseout="message('4')" /><br/>  
+   Email: <input type="text" onmouseover="messages(1)" onmouseout="message(4)" /><br/><br/>
+   <span style="font-weight:italic"> To create an account, provide the following:</span><br/><br/> 
+   User ID: <input type="text" onmouseover="messages(2)" onmouseout="message(4)" /><br/>
+   Password: <input type="password" onmouseover="messages(3)" onmouseout="message(4)" /><br/> 
+   
+   <textarea id="adviceBox" cols="55" rows="4" style="position:absolute; left:251px; top=1px"> </textarea><br/><br/>
+   <input type="submit" value="Submit" />
+   <input type="reset" value="Reset" />
+   </p>
+</form>
+</body>
+</html>
