@@ -15,37 +15,54 @@
 //       - write all (obligue) js interaction   
 //       - do ID generation for images + check file   
 
+// TODO create BDD if non exist
+//include_once('model/createBDD.php');
+//creatBDD();
 include_once('model/connectDb.php');
 include_once('model/getColumn.php');
 include_once('model/insertUser.php');
 insertUser('jean','godin','jg@hry.com','0672434345');
 
-// include_once('model/create_ddb.php');
+// Controler
+// Check type 
+if( isset($_POST['sname'] )
+	&& $_POST['sname']
+	&& isset($_POST['fname'] )
+	&& $_POST['fname']
+	&& isset($_POST['email'] )
+	&& $_POST['email']
+	&& isset($_POST['tel'] )
+	&& $_POST['tel']
+	&& isset($_POST['date'] )
+	&& $_POST['date']
+	&& isset($_POST['description'] )
+	&& $_POST['description']
+	&& isset($_POST['severity'] )
+	&& $_POST['severity']
+	&& isset($_POST['follow'] )
+	&& $_POST['follow']
+	/*&& isset($_POST['photo'] )
+	&& $_POST['photo']) {*/
+	){
+	$form_sent = false;
+	if (insertUser('oh yeah','godin','jg@hry.com','0672434345')) {
+
+	}
+}
+
+
+
+
 ?>
-<!DOCTYPE html>
-<html lang="fr">
 
-  <head>
-    <meta charset="utf-8">
-    <title>Incidents</title>
-    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
-	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
-	crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-	 integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" 
-	 crossorigin="anonymous">
-
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animate.css">
-  </head>
+<?php // View  ?>
+<?php include_once('myHeader.php'); ?>
+<?php include_once('nav.php'); ?>
+ 
+<?php myHeader_fr("Incidents Formulaire"); ?>
 
   <body onLoad="setDate()">
-<?php include_once('nav.php'); 
-    myNav("form");
-  ?>
+<?php myNav("form"); ?>
   	<script src="js/form.js"></script>
   	<div class="form-header row wow fadeInDown" data-wow-delay="0.1s">
   	<h1> Formulaire de report d'incidents.</h1>
@@ -54,12 +71,14 @@ insertUser('jean','godin','jg@hry.com','0672434345');
   	</div>
 
 <div class="main">
-		<form name="form1" method="post" action="mailto:pierrerondin@laposte.net?cc=wladduma@gmail.com" enctype="text/plain" onSubmit="return checkSubmit()">
+		<!-- <form name="form1" method="post" action="mailto:pierrerondin@laposte.net?cc=wladduma@gmail.com" enctype="text/plain" onSubmit="return checkSubmit()"> -->
+
+		<form name="form1" method="post" action="form.php" enctype="text/plain" onSubmit="return checkSubmit()">
 	<div class="row">
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
 		    <label for="nom" >Nom*</label>
-		    <input aria-describedby="descriptionNom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom"  aria-required="true" required onblur="checkFormElement()" >
+		    <input aria-describedby="descriptionNom" name="sname" type="text" class="form-control" id="nom" placeholder="Nom"  aria-required="true" required onblur="checkFormElement()" >
 		    <div hidden id="descriptionNom">Donnez le nom pour vous identifier.</div>
 		  </div>
 		</div>
@@ -69,7 +88,7 @@ insertUser('jean','godin','jg@hry.com','0672434345');
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="prenom">Prénom*</label>
-		    <input aria-describedby="descriptionPrenom" name="prenom" type="text" class="form-control" id="prenom" placeholder="Prénom"  aria-required="true" required>
+		    <input aria-describedby="descriptionPrenom" name="fname" type="text" class="form-control" id="prenom" placeholder="Prénom"  aria-required="true" required>
 		    <div hidden id="descriptionPrenom">Donnez le prénom pour vous identifier.</div>
 		  </div>
 		</div>
@@ -87,15 +106,6 @@ insertUser('jean','godin','jg@hry.com','0672434345');
 
 	
 
-	<div class="row">
-		<div class="col-md-12">
-		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
-		    <label for="date">Date*</label>
-		    <input aria-describedby="descriptionDate" name="date" type='date' class="form-control" id="date" placeholder="Date" aria-required="true" required>
-		    <div hidden id="descriptionDate">Donnez la date à laquelle l'incident c'est produit.</div>
-		  </div>
-		</div>
-	</div>
 
 	<div class="row">
 		<div class="col-md-12">
@@ -112,6 +122,15 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 	<div class="row">
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
+		    <label for="date">Date*</label>
+		    <input aria-describedby="descriptionDate" name="date" type='date' class="form-control" id="date" placeholder="Date" aria-required="true" required>
+		    <div hidden id="descriptionDate">Donnez la date à laquelle l'incident c'est produit.</div>
+		  </div>
+		</div>
+	</div>
+	<!-- <div class="row">
+		<div class="col-md-12">
+		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="dept">Departement*</label>
 		    <input aria-describedby="descriptionDepartement" name="dept"  class="form-control" id="dept" readonly="readonly" placeholder="Departement" aria-required="true" required>
 		    <select name="listDept" size="1" onChange="setDepartement()">
@@ -124,7 +143,7 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 		    <div hidden id="descriptionDepartement">Donnez votre département.</div>
 		  </div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="row">
 		<div class="col-md-12">
@@ -136,7 +155,7 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 		</div>
 	</div>
 
-	<div class="row">
+<!-- 	<div class="row">
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
 		    <label for="localisation">Localisation*</label>
@@ -144,16 +163,16 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 		    <div hidden id="descriptionLocalisation">Donnez la localisation de l'incident.</div>
 		  </div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="row">
 		<div class="col-sm-3">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s">
 			<label for="severite">Sévérité</label><br>
 			<label>
-			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Peu urgent"> Peu urgent<br>
-			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Urgent" checked> Urgent<br>
-			<input aria-describedby="descriptionUrgence" name="severite" type="radio"  value="Très urgent"> Très urgent</label><br>
+			<input aria-describedby="descriptionUrgence" name="severity" type="radio"  value="Peu urgent"> Peu urgent<br>
+			<input aria-describedby="descriptionUrgence" name="severity" type="radio"  value="Urgent" checked> Urgent<br>
+			<input aria-describedby="descriptionUrgence" name="severity" type="radio"  value="Très urgent"> Très urgent</label><br>
 		    <div hidden id="descriptionUrgence">Donnez la severité de l'incident, peu urgent, urgent ou trés urgent.</div>
 		  </div>
 		</div>
@@ -162,9 +181,9 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s">
 			<label for="suivi">Suivi</label><br>
 			<label>
-			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Web"> Web<br>
-			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Mail"> Mail<br>
-			<input aria-describedby="descriptionSuivi" name="suivi" type="radio" name="group2" value="Telephone" checked> Téléphone</label><br>
+			<input aria-describedby="descriptionSuivi" name="follow" type="radio" name="group2" value="Web"> Web<br>
+			<input aria-describedby="descriptionSuivi" name="follow" type="radio" name="group2" value="Mail"> Mail<br>
+			<input aria-describedby="descriptionSuivi" name="follow" type="radio" name="group2" value="Telephone" checked> Téléphone</label><br>
 		    <div hidden id="descriptionSuivi">Donnez la méthode que vous préférer pour la suivi de l'incident.</div>
 			</div>
 		</div>
@@ -184,7 +203,7 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 	</div>
 
 	</div>
-	
+
 	<?php include_once('footer.php'); ?>
 
   </body>
