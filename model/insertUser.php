@@ -23,3 +23,7 @@ function handle_sql_errors($query, $error_message)
 		}
 		return true;	
 	}
+
+	function sec ($string) {
+		 return htmlspecialchars($string);
+	}

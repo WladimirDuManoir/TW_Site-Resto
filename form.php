@@ -21,10 +21,11 @@
 include_once('model/connectDb.php');
 include_once('model/getColumn.php');
 include_once('model/insertUser.php');
-insertUser('jean','godin','jg@hry.com','0672434345');
-
+// No animation on all form (not applied on user_message)
+$no_anim = false;
+// Has the form information 
+$form_completed = false;
 // Controler
-// Check type 
 if( isset($_POST['sname'] )
 	&& $_POST['sname']
 	&& isset($_POST['fname'] )
@@ -43,13 +44,24 @@ if( isset($_POST['sname'] )
 	&& $_POST['follow']
 	/*&& isset($_POST['photo'] )
 	&& $_POST['photo']) {*/
-	){
+	) {
 	$form_sent = false;
-	if (insertUser('oh yeah','godin','jg@hry.com','0672434345')) {
-
+	if (insertUser(sec($_POST['sname']),
+		sec($_POST['fname']),
+		sec($_POST['email']),
+		sec($_POST['tel'])) ) {
+			$form_sent = true;
+		}
+	$no_anim = true;
+	$form_completed = true;
+} else {
+	if(isset($_GET['no_anim'] )
+	&& $_GET['no_anim']) {
+		$no_anim = $_GET['no_anim'];
+	} else {
+		$no_anim = false;
 	}
 }
-
 
 
 
@@ -64,7 +76,29 @@ if( isset($_POST['sname'] )
   <body onLoad="setDate()">
 <?php myNav("form"); ?>
   	<script src="js/form.js"></script>
-  	<div class="form-header row wow fadeInDown" data-wow-delay="0.1s">
+  	<?php if ($form_completed) { ?>
+	  	<div class=" row wow fadeInDown">
+	  		<div class="col-md-12">
+	  		<?php if ($form_sent) { ?>
+	  		<div class="col-md-1 alert alert-success">
+	  			<a href="form.php?no_anim=true" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	  			<h4>Votre incident a été enregistré ! </h4>
+	  		</div>
+  			<?php } ?>
+	  		<?php if (!$form_sent) { ?>
+	  		<div class="col-md-1 alert alert-danger">
+	  			<a href="form.php?no_anim=true" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	  			<h4>
+	  				Votre message n'a pas été envoyer. 
+	  				<br> La connection avec le server n'a pas pue se faire. 
+	  				<br> Vérifier votre réseaux. Essayer de nouveau dans 15 minutes. 
+	  			</h4>
+	  		</div>
+  			<?php } ?>
+	  		</div>
+	  	</div>
+  	<?php } ?>
+  	<div class="form-header row <?php echo ($no_anim ? '' : 'wow') ?> fadeInDown" data-wow-delay="0.1s">
   	<h1> Formulaire de report d'incidents.</h1>
   	<h4> Les champs indiqués par une * sont obligatoires.</h4>
 	<header>Remplir l'ensemble des champs pour signaler un incident.</header>
@@ -73,12 +107,12 @@ if( isset($_POST['sname'] )
 <div class="main">
 		<!-- <form name="form1" method="post" action="mailto:pierrerondin@laposte.net?cc=wladduma@gmail.com" enctype="text/plain" onSubmit="return checkSubmit()"> -->
 
-		<form name="form1" method="post" action="form.php" enctype="text/plain" onSubmit="return checkSubmit()">
+		<form name="form1" method="post" action="form.php?no_anim=true" onSubmit="return checkSubmit()">
 	<div class="row">
 		<div class="col-md-12">
-		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
+		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInRight" data-wow-delay="0.1s" >
 		    <label for="nom" >Nom*</label>
-		    <input aria-describedby="descriptionNom" name="sname" type="text" class="form-control" id="nom" placeholder="Nom"  aria-required="true" required onblur="checkFormElement()" >
+		    <input  value="todebug" aria-describedby="descriptionNom" name="sname" type="text" class="form-control" id="nom" placeholder="Nom" aria-required="true" required onblur="checkFormElement()" >
 		    <div hidden id="descriptionNom">Donnez le nom pour vous identifier.</div>
 		  </div>
 		</div>
@@ -86,9 +120,9 @@ if( isset($_POST['sname'] )
 
 	<div class="row">
 		<div class="col-md-12">
-		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
+		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="prenom">Prénom*</label>
-		    <input aria-describedby="descriptionPrenom" name="fname" type="text" class="form-control" id="prenom" placeholder="Prénom"  aria-required="true" required>
+		    <input  value="todebugSurname" aria-describedby="descriptionPrenom" name="fname" type="text" class="form-control" id="prenom" placeholder="Prénom"  aria-required="true" required>
 		    <div hidden id="descriptionPrenom">Donnez le prénom pour vous identifier.</div>
 		  </div>
 		</div>
@@ -96,10 +130,10 @@ if( isset($_POST['sname'] )
 		  
 	<div class="row">
 		<div class="col-md-12">
-		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s">
+		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInRight" data-wow-delay="0.1s">
 		    <label for="adresseMail">Addresse Email*</label>
 		    <div hidden id="descriptionEmail">Donnez un email ou l'on pourra vous contacter.</div>
-		    <input aria-describedby="descriptionEmail" name="email" type="email" class="form-control" id="adresseMail" placeholder="Email" aria-required="true" required>
+		    <input  value="todebug@mail.ciom" aria-describedby="descriptionEmail" name="email" type="email" class="form-control" id="adresseMail" placeholder="Email" aria-required="true" required>
 		  </div>
 		</div>
 	</div>
@@ -109,9 +143,9 @@ if( isset($_POST['sname'] )
 
 	<div class="row">
 		<div class="col-md-12">
-		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s" >
+		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInRight" data-wow-delay="0.1s" >
 		     <label for="numeroTel">Numéro de téléphone*</label>
-		    <input aria-describedby="descriptionTelephone" name="tel" type='tel' pattern='\d{10}' title='Numéro de téléphone Format: 0666666666 ' 
+		    <input  value="0000000000" aria-describedby="descriptionTelephone" name="tel" type='tel' pattern='\d{10}' title='Numéro de téléphone Format: 0666666666 ' 
 class="form-control" id="numeroTel" placeholder="0666666666" required aria-required="true">
 		    <div hidden id="descriptionTelephone">Donnez le téléphone avec lequelle on peut vous contacter.</div>
 
@@ -121,7 +155,7 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 
 	<div class="row">
 		<div class="col-md-12">
-		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
+		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="date">Date*</label>
 		    <input aria-describedby="descriptionDate" name="date" type='date' class="form-control" id="date" placeholder="Date" aria-required="true" required>
 		    <div hidden id="descriptionDate">Donnez la date à laquelle l'incident c'est produit.</div>
@@ -132,7 +166,7 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 		<div class="col-md-12">
 		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="dept">Departement*</label>
-		    <input aria-describedby="descriptionDepartement" name="dept"  class="form-control" id="dept" readonly="readonly" placeholder="Departement" aria-required="true" required>
+		    <input  value="" aria-describedby="descriptionDepartement" name="dept"  class="form-control" id="dept" readonly="readonly" placeholder="Departement" aria-required="true" required>
 		    <select name="listDept" size="1" onChange="setDepartement()">
 				<OPTION>1
 				<OPTION>2
@@ -147,9 +181,9 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 
 	<div class="row">
 		<div class="col-md-12">
-		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s" >
+		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInLeft" data-wow-delay="0.1s" >
 		    <label for="description">Description*</label>
-		    <input aria-describedby="descriptionDescription" name="description" type='text' class="form-control" id="description" placeholder="Déscription" aria-required="true" required>
+		    <input  value="a description to debug" aria-describedby="descriptionDescription" name="description" type='text' class="form-control" id="description" placeholder="Déscription" aria-required="true" required>
 		  </div>
 		    <div hidden id="descriptionDescription">Donnez la description complète de l'incident.</div>
 		</div>
@@ -167,7 +201,7 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 
 	<div class="row">
 		<div class="col-sm-3">
-		  <div class="form-group wow fadeInLeft" data-wow-delay="0.1s">
+		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInLeft" data-wow-delay="0.1s">
 			<label for="severite">Sévérité</label><br>
 			<label>
 			<input aria-describedby="descriptionUrgence" name="severity" type="radio"  value="Peu urgent"> Peu urgent<br>
@@ -178,7 +212,7 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 		</div>
 		  
 		<div class="col-sm-3">
-		  <div class="form-group wow fadeInRight" data-wow-delay="0.1s">
+		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInRight" data-wow-delay="0.1s">
 			<label for="suivi">Suivi</label><br>
 			<label>
 			<input aria-describedby="descriptionSuivi" name="follow" type="radio" name="group2" value="Web"> Web<br>
@@ -190,14 +224,14 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 	</div>
 
 	<div class="row">
-		  <div class="photo form-group wow fadeInLeft">
+		  <div class="photo form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInLeft">
 		    <label for="exampleFile">Photos</label>
 		    <input aria-describedby="descriptionPhoto" name="photo" type="file" id="envoiePhoto">
 		    <div hidden id="descriptionPhoto">Donnez une photo de l'incident.</div>
 		  </div>
 	</div>
 	<div class="row submit-btn">
-		<button type="submit" class="btn btn-primary btn-lg wow  col-sm-11 col-md-3" data-wow-iteration="infinite">Submit</button> <!-- pulse -->
+		<button type="submit" class="btn btn-primary btn-lg <?php echo ($no_anim ? '' : 'wow') ?>  col-sm-11 col-md-3" data-wow-iteration="infinite">Submit</button> <!-- pulse -->
 	</div>
 </form>
 	</div>
