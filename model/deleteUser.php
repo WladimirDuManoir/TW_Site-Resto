@@ -2,9 +2,13 @@
 
 	function deleteUser ($id) {
 		global $bddtruc;
-		$ttcolonnes = $bddtruc->prepare( "DELETE FROM `site_incidents`.`users` WHERE `id`= '{$id}'");
-		$ttcolonnes->execute();
-		$c_colonnes = $ttcolonnes->fetchAll();
-		
-		return $c_colonnes;
+		try { 
+			$ttcolonnes = $bddtruc->prepare( "DELETE FROM `site_incidents`.`users` WHERE `id`= '{$id}'");
+			$ttcolonnes->execute();
+			$c_colonnes = $ttcolonnes->fetchAll();
+		} catch(PDOException $e) {
+			handle_sql_errors($selectQuery, $e->getMessage());
+			return false;
+		}
+		return true;
 	}

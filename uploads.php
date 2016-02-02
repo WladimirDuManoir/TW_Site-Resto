@@ -8,7 +8,7 @@ function uploads ($fileName, &$user_error) {
 	// Check if image file is a actual image or fake image
 	if(isset($_POST["submit"])
 		&& isset($_FILES["fileToUpload"]["tmp_name"])) {
-	    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]); // BUG NO FILE XXX
+	    $check = @getimagesize($_FILES["fileToUpload"]["tmp_name"]); // BUG NO FILE XXX
 	    if($check !== false) {
 	        $uploadOk = 1;
 	       	
