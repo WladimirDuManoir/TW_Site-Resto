@@ -18,13 +18,20 @@
 // TODO create BDD if non exist
 //include_once('model/createBDD.php');
 //creatBDD();
+include_once('littlesFunctions.php');
 include_once('model/connectDb.php');
 include_once('model/getColumn.php');
 include_once('model/insertUser.php');
+include_once('model/insertIncident.php');
+include_once('uploads.php');
 // No animation on all form (not applied on user_message)
 $no_anim = false;
 // Has the form information 
 $form_completed = false;
+// Debug variable
+$debug = false;
+$user_error = "";
+$debug_text = "it works !";
 // Controler
 if( isset($_POST['sname'] )
 	&& $_POST['sname']
@@ -41,30 +48,44 @@ if( isset($_POST['sname'] )
 	&& isset($_POST['severity'] )
 	&& $_POST['severity']
 	&& isset($_POST['follow'] )
-	&& $_POST['follow']
-	/*&& isset($_POST['photo'] )
-	&& $_POST['photo']) {*/
-	) {
+	&& $_POST['follow']) {
 	$form_sent = false;
+
+	// user info 
 	if (insertUser(sec($_POST['sname']),
 		sec($_POST['fname']),
 		sec($_POST['email']),
 		sec($_POST['tel'])) ) {
 			$form_sent = true;
+		// TODO Login same user ! 
+		$filename = uploads("tralalera", $user_error);
+	}
+
+	// incident info
+	// TODO
+	if($form_sent) {
+		if (insertIncident("98",
+			sec($_POST['description']),
+			"1", // TODO
+			sec($_POST['severity']),
+			sec($_POST['follow']),
+			sec($filename))) {
+			$form_sent = true;
 		}
+	}
 	$no_anim = true;
 	$form_completed = true;
+
 } else {
 	if(isset($_GET['no_anim'] )
-	&& $_GET['no_anim']) {
+	 && $_GET['no_anim']) {
 		$no_anim = $_GET['no_anim'];
 	} else {
 		$no_anim = false;
 	}
 }
 
-
-
+insertIncident("98","sf","1","2","4","dsfsd");
 ?>
 
 <?php // View  ?>
@@ -79,14 +100,14 @@ if( isset($_POST['sname'] )
   	<?php if ($form_completed) { ?>
 	  	<div class=" row wow fadeInDown">
 	  		<div class="col-md-12">
-	  		<?php if ($form_sent) { ?>
-	  		<div class="col-md-1 alert alert-success">
+	  		<?php if ($form_sent && $user_error == "") { ?>
+	  		<div class="col-md-12 alert alert-success">
 	  			<a href="form.php?no_anim=true" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 	  			<h4>Votre incident a été enregistré ! </h4>
 	  		</div>
   			<?php } ?>
-	  		<?php if (!$form_sent) { ?>
-	  		<div class="col-md-1 alert alert-danger">
+	  		<?php if (!$form_sent && $user_error == "") { ?>
+	  		<div class="col-md-12 alert alert-danger">
 	  			<a href="form.php?no_anim=true" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 	  			<h4>
 	  				Votre message n'a pas été envoyer. 
@@ -95,6 +116,26 @@ if( isset($_POST['sname'] )
 	  			</h4>
 	  		</div>
   			<?php } ?>
+  			<?php if ($user_error !== "") { ?>
+	  		<div class="col-md-12 alert  alert-warning">
+	  			<a href="form.php?no_anim=true" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	  			<h4>
+	  				<?php echo $user_error; ?> 
+	  			</h4>
+	  		</div>
+  			<?php } ?>
+	  		</div>
+	  	</div>
+  	<?php } ?>
+  	<?php if ($debug) { ?>
+  		<div class=" row wow fadeInDown">
+	  		<div class="col-md-12">
+		  		<div class="col-md-12 alert alert-success">
+		  			<a href="form.php?no_anim=true" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  			<h4>
+		  				<?php echo $debug_text; ?>
+		  			</h4>
+		  		</div>
 	  		</div>
 	  	</div>
   	<?php } ?>
@@ -107,7 +148,7 @@ if( isset($_POST['sname'] )
 <div class="main">
 		<!-- <form name="form1" method="post" action="mailto:pierrerondin@laposte.net?cc=wladduma@gmail.com" enctype="text/plain" onSubmit="return checkSubmit()"> -->
 
-		<form name="form1" method="post" action="form.php?no_anim=true" onSubmit="return checkSubmit()">
+		<form name="form1" method="post" action="form.php?no_anim=true" onSubmit="return checkSubmit()" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-md-12">
 		  <div class="form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInRight" data-wow-delay="0.1s" >
@@ -226,12 +267,12 @@ class="form-control" id="numeroTel" placeholder="0666666666" required aria-requi
 	<div class="row">
 		  <div class="photo form-group <?php echo ($no_anim ? '' : 'wow') ?> fadeInLeft">
 		    <label for="exampleFile">Photos</label>
-		    <input aria-describedby="descriptionPhoto" name="photo" type="file" id="envoiePhoto">
+		    <input aria-describedby="descriptionPhoto" name="fileToUpload" type="file" id="fileToUpload">
 		    <div hidden id="descriptionPhoto">Donnez une photo de l'incident.</div>
 		  </div>
 	</div>
 	<div class="row submit-btn">
-		<button type="submit" class="btn btn-primary btn-lg <?php echo ($no_anim ? '' : 'wow') ?>  col-sm-11 col-md-3" data-wow-iteration="infinite">Submit</button> <!-- pulse -->
+		<button name="submit" type="submit" class="btn btn-primary btn-lg <?php echo ($no_anim ? '' : 'wow') ?>  col-sm-11 col-md-3" data-wow-iteration="infinite">Submit</button> <!-- pulse -->
 	</div>
 </form>
 	</div>
