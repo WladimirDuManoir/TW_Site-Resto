@@ -25,7 +25,7 @@ function uploads ($fileName, &$user_error) {
 	}
 	// Check file size
 	if ($_FILES["fileToUpload"]["size"] > 500000) {
-	    $user_error = "Désolé mais le fichier est trrop grand !";
+	    $user_error = "Désolé mais le fichier est trop grand !";
 	    $uploadOk = 0;
 	}
 
