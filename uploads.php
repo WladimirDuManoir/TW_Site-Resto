@@ -33,7 +33,10 @@ function uploads ($fileName, &$user_error) {
 		if (@copy($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 	        	$uploadOk = 1;
        } else {
-       		$user_error = "Une erreur c'est produite connection impossible. Ressayer plus tard.";
+       		$errors= error_get_last();
+       		$user_error = "Une erreur c'est produite connection impossible. Ressayer plus tard. <br>"
+       		. "COPY ERROR: ".$errors['type']
+       		. "<br />\n".$errors['message'];
         	$uploadOk = 0;
     	}
 	}

@@ -1,4 +1,5 @@
 <?php
+$user_error = "";
 include_once('littlesFunctions.php');
 include_once('model/connectDb.php');
 ?>
@@ -13,6 +14,16 @@ include_once('model/connectDb.php');
 <body>
  <?php myNav("admin"); ?>
 
+<?php if ($user_error !== "") { ?>
+<div class="row wow fadeInDown">
+	<div class="col-md-12 alert  alert-warning">
+		<a href="form.php?no_anim=true" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<h4>
+			<?php echo $user_error; ?> 
+		</h4>
+	</div>
+</div>
+<?php } ?>
 <div class="row wow fadeInDown">
   <div class="form-header " data-wow-delay="0.1s">
     <h1>  Site de rapport des incidents.</h1>

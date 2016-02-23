@@ -13,9 +13,7 @@
 //       - write all (obligue) js interaction   
 //       - do ID generation for images + check file   
 
-// TODO create BDD if non exist
-//include_once('model/createBDD.php');
-//creatBDD();
+
 // DELETE TYPE (!) in incidents
 include_once('littlesFunctions.php');
 include_once('model/connectDb.php');
