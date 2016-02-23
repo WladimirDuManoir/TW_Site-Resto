@@ -27,7 +27,6 @@ function checkFormElement() {
 	if (elem.value == "") {
 		// if wrong add note + wrong-entry class
 		if (!hasClass(elem,"wrong-entry")) {
-			alert("good");
 			elem.className += " wrong-entry ";
 			//elem.classList.add(" wrong-entry ");
 		}
