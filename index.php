@@ -12,7 +12,7 @@ include_once('model/connectDb.php');
 <?php // Page  ?>
 <?php myHeader_fr("Incidents"); ?>
 <body>
- <?php myNav("admin"); ?>
+ <?php myNav(" "); ?>
 
 <?php if ($user_error !== "") { ?>
 <div class="row wow fadeInDown">
@@ -31,16 +31,21 @@ include_once('model/connectDb.php');
  </div>
 </div>
 <div class="row wow fadeInLeft">
-    <h4> TODO </h4>
-	 <header>        - do table editor </header>
-	<header>       - do a recap of all form info   </header>
-	<header>		 - data base </header>
-	<header>       - put all html in other doc  </header>
-	<header>       - submit page -> reloed page   </header>
-	<header>		    - fide best way to debug js</header>
-	<header>       - write and check checker for js form   </header>
-	<header>       - write all (obligue) js interaction   </header>
-	<header>       - do ID generation for images + check file   </header>
+<h4> Bonjour et bienvenu dans le site de rapport des incidents ! </h4>
+<header>  Si la base de données ne c'est pas crée automatiquement modifier  </header>
+<head>le mot de passe dans le fichier : /model/connectDb.php.</head>
+<?php 
+// <h4> TODO </h4>
+// 	 <header>        - do table editor </header>
+// 	<header>       - do a recap of all form info   </header>
+// 	<header>		 - data base </header>
+// 	<header>       - put all html in other doc  </header>
+// 	<header>       - submit page -> reloed page   </header>
+// 	<header>		    - fide best way to debug js</header>
+// 	<header>       - write and check checker for js form   </header>
+// 	<header>       - write all (obligue) js interaction   </header>
+// 	<header>       - do ID generation for images + check file   </header> 
+	?>
 </div>
 
 	

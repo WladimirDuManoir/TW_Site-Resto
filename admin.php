@@ -1,7 +1,4 @@
 <?php 
-// TODO create BDD if non exist
-//include_once('model/createBDD.php');
-//creatBDD();
 $user_error = "";
 $debug_text = "it works ! and debug is on";
 

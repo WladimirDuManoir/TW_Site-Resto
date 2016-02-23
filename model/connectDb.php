@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "chamo67";		// XXX->PROD
+$password = "";		
 $filename = "db-save/create_ddb0005.sql";
 try {
 		// login root et psw ''
