@@ -1,0 +1,28 @@
+
+<html xmlns="http://www.w3c.org/1999/xhtml">
+	<head>
+		<title>Hiding Elements</title>
+		<script type="text/javascript">
+		<!--
+			function flipImag() {
+				dom = document.getElementById("saturn").style;
+				if (dom.visibility == "visible")
+					dom.visibility = "hidden";
+				else 
+					dom.visibility = "visible";
+			}
+		// -->
+		</script>
+	</head>
+	
+	<body>
+		<div id="saturn" style="position: relative; visibility: visible; " >
+			<img src="./saturn.gif"  alt="(Picture of saturn)" />
+		</div>
+		<form action="">
+		<input type="button" value="Toggle Saturn" 
+		       onclick="flipImag()" />
+		</p>
+		</form>
+	</body>
+</html>

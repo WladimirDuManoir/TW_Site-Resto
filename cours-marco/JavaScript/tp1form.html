@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Corrige form</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <script type='text/javascript' src='tp1form.js'></script>
+</head>
+
+<body onload="initDate(document.myform.date)">
+<div class="content">
+<h1>Corrige TP1</h1>
+
+<h2>Deuxi&egrave;me Partie</h2>
+
+<form name="myform" >
+
+Inscription Date&nbsp;:<input name='date' type='text' readonly='readonly'/><br/>
+Nom&nbsp;: <input name='nom' type='text' onChange="checkName(this);" /><br/>
+Pr&eacute;nom&nbsp;: <input name='prenom' type='text' /><br/>
+Couriel&nbsp;: <input name='mail' type='text' /><br/>
+
+D&eacute;partement&nbsp;:
+<select name="nomDep" onchange="updateDepNum(this,document.myform.numDep)">
+    <option value='' selected='selected'></option>
+    <option value="09">ARIEGE</option>
+    <option value="12">AVEYRON</option>
+    <option value="31">HAUTE GARONNE</option>
+
+    <option value="32">GERS</option>
+    <option value="46">LOT</option>
+    <option value="65">HAUTES PYRENEES</option>
+    <option value="81">TARN</option>
+    <option value="82">TARN ET GARONNE</option>
+</select>
+<input type='text' size='2' name='numDep' readonly='readonly' />
+
+</label>
+<button type='button' onclick='checkForm(document.myform)'>S'inscrire</button>
+</fieldset>
+</form>
+
+
+</div>
+</body>
+</html>
+
+</html>
